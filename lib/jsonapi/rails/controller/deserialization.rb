@@ -62,7 +62,7 @@ module JSONAPI
                 .instrument('parse.jsonapi-rails',
                             key: key, payload: hash, class: klass) do
                 JSONAPI::Parser::Resource.parse!(hash)
-                resource = klass.new(hash[:data])
+                resource = klass.new(hash)
                 controller.request.env[JSONAPI_POINTERS_KEY] =
                   resource.reverse_mapping
                 controller.params[key.to_sym] = resource.to_hash
